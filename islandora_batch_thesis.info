@@ -1,0 +1,9 @@
+name = Islandora Batch Thesis
+project = islandora_batch_thesis
+description = "Batch import theses using the islandora_batch framework."
+package = Islandora
+dependencies[] = islandora
+dependencies[] = islandora_batch
+version = 7.x-dev
+core = 7.x
+files[] = includes/object.inc

@@ -14,9 +14,11 @@ function islandora_batch_thesis_drush_command() {
   $items['islandora_thesis_batch_preprocess'] = array(
     'aliases' => array('itbp'),
     'description' => 'Import theses into collections.',
-    'drupal dependencies' => array('islandora_batch',
+    'drupal dependencies' => array(
+      'islandora_batch',
       'islandora_scholar',
-      'islandora_batch_thesis'),
+      'islandora_batch_thesis',
+    ),
     'options' => array(
       'type' => array(
         'description' => 'Either "directory" or "zip".',
@@ -27,7 +29,7 @@ function islandora_batch_thesis_drush_command() {
         'required' => TRUE,
       ),
       'namespace' => array(
-        'description' => 'The namespace for objects created by this command.  Defaults to namespace set in fedora config.',
+        'description' => 'The namespace for objects created. Defaults to namespace set in fedora config.',
         'required' => FALSE,
       ),
       'content_models' => array(
@@ -39,17 +41,11 @@ function islandora_batch_thesis_drush_command() {
         'value' => 'optional',
       ),
       'parent_relationship_uri' => array(
-        'description' => 'The namespace URI of the relationship to the parent.' .
-          ' Defaults to "info:fedora/fedora-system:def/relations-external#".',
+        'description' => 'URI of the parent relationship, defaults to "info:fedora/fedora-system:def/relations-external#".',
         'value' => 'optional',
       ),
       'parent_relationship_pred' => array(
-        'description' => 'The predicate of the relationship to the parent. ' .
-          'Defaults to "isMemberOfCollection".',
-        'value' => 'optional',
-      ),
-      'create_pdfs' => array(
-        'description' => 'A flag to cause PDFs to be created. Page PDF creation is dependant on the configuration within Drupal proper.',
+        'description' => 'The predicate of the relationship to the parent. Defaults to "isMemberOfCollection".',
         'value' => 'optional',
       ),
       'do_not_generate_ocr' => array(
@@ -64,7 +60,7 @@ function islandora_batch_thesis_drush_command() {
 }
 
 /**
- * Implements hook_drush_command().
+ * Implements drush_file_command().
  */
 function drush_islandora_batch_thesis_islandora_thesis_batch_preprocess() {
   // XXX: Due to how Drush bootstrapping works, the connection may be created
